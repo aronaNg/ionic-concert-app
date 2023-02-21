@@ -1,59 +1,75 @@
 import {createStore, GetterTree, Store, useStore as baseUseStore,ActionTree, MutationTree} from "vuex"
 import { InjectionKey } from "vue";
-export type Todo = {id:number, title:string, description?:string, img?:string}
+export type Todo = {id:number, title:string, description?:string, img?:string, createdAt?:string, updatedAt?:string}
 //export type ;
-export type State = {todos:Todo[]/*,categories:Category[]*/}
+export type State = { todos: Todo[]/*,categories:Category[]*/ }
+import axios from "axios";
 
 
 
 const state: State = {
     todos:[
-        {
-           id: 0,
-           title: "Acheter du pain",
-           img: "https://res.cloudinary.com/hv9ssmzrz/image/fetch/c_fill,f_auto,h_360,q_auto,w_740/https://images-ca-1-0-1-eu.s3-eu-west-1.amazonaws.com/photos/original/880/pain-baguette-3000x2000.jpg",
-           description: "à la boulangerie"
-        },
-        {
-           id: 1,
-           title: "Acheter de l'eau",
-           img: "https://m.media-amazon.com/images/I/51BcVYSpbCL._AC_SX342_.jpg",
-           description: "quelque part"
-        },
-        {
-           id: 2,
-           title: "Aller chercher des batteries",
-           img: "https://res.cloudinary.com/hv9ssmzrz/image/fetch/c_fill,f_auto,h_360,q_auto,w_740/https://images-ca-1-0-1-eu.s3-eu-west-1.amazonaws.com/photos/original/880/pain-baguette-3000x2000.jpg",
-           description: "magasin"
-        },
-        {
-           id: 3,
-           title: "Nettoyer le garage",
-           img: "https://res.cloudinary.com/hv9ssmzrz/image/fetch/c_fill,f_auto,h_360,q_auto,w_740/https://images-ca-1-0-1-eu.s3-eu-west-1.amazonaws.com/photos/original/880/pain-baguette-3000x2000.jpg",
-           description: "demain matin"
-        },
+       
     ]
 }
 
+
+const API_URL = "http://localhost:8082/api"
+
 const getters: GetterTree<State,State> = {
-    getAllTodos : (state) => state.todos,
+    getAllTodos: (state) => {
+        return state.todos
+    },
     getTodoById : (state) => (id:number) => state.todos.find(todo => todo.id === id)
 }
 
 const actions:ActionTree<State,State> ={
-    addTodo(context,newTodo){
-        context.commit("addTodo",newTodo);
+    addTodo(context, newTodo) {
+        
+
+        return axios.post(API_URL + "/todos", newTodo).then((response) => {
+            
+            if (response.status == 200) {
+                context.commit("addTodo", newTodo);
+            }
+
+            return {"statut":response.status, "message":response.statusText}
+
+        }).catch((error) => {
+            console.log(error);
+            return {"statut":error.status,"message":error}
+        })
+
     },
-    editTodo(context, newTodo) {
-        context.commit("editTodo", newTodo);
+    editTodo(context, editTodo) {
+        return axios.put(API_URL + "/todos/"+editTodo.id, editTodo).then((response) => {
+            
+            if (response.status == 200) {
+                context.commit("editTodo", editTodo);
+            }
+
+            return {"statut":response.status, "message":response.statusText}
+
+        }).catch((error) => {
+            console.log(error);
+            return {"statut":error.status,"message":error}
+        })
     },
     deleteTodo(context, todo_id) {
         console.log("action delete" , todo_id)
         context.commit("deleteTodo", todo_id);
+    },
+    async getTodos(state) {
+        const todos = await axios.get(API_URL+"/todos");
+
+        state.commit("GET_TODO",todos.data)
     }
 }
 
-const mutations: MutationTree<State> ={
+const mutations: MutationTree<State> = {
+    GET_TODO(state, todos) {
+        state.todos = todos;
+    },
     addTodo(state,newTodo){
         const todoFormated = {
             title:newTodo.title,

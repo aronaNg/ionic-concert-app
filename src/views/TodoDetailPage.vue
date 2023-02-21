@@ -74,11 +74,8 @@ export default defineComponent({
     const todo = computed(() => {
       return store.getters.getTodoById(todoId);
     });
+
     return { todo, deleteTodo };
-
-    // async function afficherToast(message,color){
-
-    // }
   },
   // data : ()=>{
   //   test:"test"
@@ -87,10 +84,22 @@ export default defineComponent({
 });
 </script>
 
-<!-- <style scoped>
+<style scoped>
+/*
+ion-toast.toast-success {
+  --background: #28a745;
+  --color: #fff;
+}
+
+ion-toast.toast-error {
+  --background: red;
+  --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
+  --color: black;
+}
+*/
+
 #container {
   padding-left: 15px;
   padding-right: 15px;
 }
-
-</style> -->
+</style>

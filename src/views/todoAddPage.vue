@@ -15,6 +15,7 @@ import { useStore } from "../store";
 import todoForm from "@/components/todoForm.vue";
 import { useRouter } from "vue-router";
 import { defineComponent } from "vue";
+import { afficherToast } from "../components/utils/toast.js";
 export default defineComponent({
   name: "todoAdd",
   setup() {
@@ -29,9 +30,16 @@ export default defineComponent({
 
     function saveTodo(todoEmit) {
       //console.log(todoEmit);
-      store.dispatch("addTodo", todoEmit);
-      router.push("/");
+      store.dispatch("addTodo", todoEmit).then((response) => {
+        if (response.statut == 200) {
+          afficherToast("Todo ajouté avec succès", "success");
+        } else {
+          afficherToast("Erreur lors de l'ajout d'un Todo", "danger");
+        }
+        router.push("/");
+      });
     }
+
     return { saveTodo, todo };
   },
   components: { IonContent, IonPage, HeaderComponent, todoForm },

@@ -15,6 +15,8 @@ import { useStore } from "../store";
 import todoForm from "@/components/todoForm.vue";
 import { useRouter, useRoute } from "vue-router";
 import { defineComponent } from "vue";
+import { afficherToast } from "../components/utils/toast.js";
+
 export default defineComponent({
   name: "todoEditPage",
   setup() {
@@ -27,8 +29,14 @@ export default defineComponent({
     console.log(todo);
     function editTodo(todoEmit) {
       //console.log(todoEmit);
-      store.dispatch("editTodo", todoEmit);
-      router.push("/");
+      store.dispatch("editTodo", todoEmit).then((response) => {
+        if (response.statut == 200) {
+          afficherToast("Todo édité avec succès", "success");
+        } else {
+          afficherToast("Erreur lors de l'edit d'un Todo", "danger");
+        }
+        router.push("/");
+      });
     }
     return { editTodo, todo };
   },

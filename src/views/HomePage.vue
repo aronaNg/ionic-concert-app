@@ -50,9 +50,13 @@ export default defineComponent({
   setup() {
     const store = useStore();
     //const todos= store.state.todos,
+
+    store.dispatch("getTodos");
+
     const todos = computed(() => {
       return store.getters.getAllTodos;
     });
+
     return { todos, add };
   },
   components: {
