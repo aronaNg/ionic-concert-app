@@ -1,9 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';
-import HeaderComponent from './components/HeaderComponent.vue'
-import {store,key} from "./store/index"
+import HeaderComponent from "./components/HeaderComponent.vue"
+
 import { IonicVue } from '@ionic/vue';
+import { store,key } from './store/index';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
@@ -26,8 +27,11 @@ import './theme/variables.css';
 
 const app = createApp(App)
   .use(IonicVue)
-  .use(router);
-app.component("headerComponent", HeaderComponent);
+  .use(router)
+  .use(store,key);
+ 
+app.component("headerComponent",HeaderComponent)  ;
+
 router.isReady().then(() => {
   app.mount('#app');
 });

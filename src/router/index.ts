@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import HomePage from '../views/HomePage.vue'
-import ToDoDetails from '../views/ToDoDetails.vue'
-import ToDoAddPage from '../views/ToDoAddPage.vue'
-import ToDoEditPage from '../views/ToDoEditPage.vue'
+import TodoDetailPage from "@/views/TodoDetailPage.vue"
+import todoAddPageVue from '@/views/todoAddPage.vue';
+import todoEditPageVue from '@/views/todoEditPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -16,20 +16,19 @@ const routes: Array<RouteRecordRaw> = [
     component: HomePage
   },
   {
-    path: '/add',
-    name: 'AddPage',
-    component: ToDoAddPage
+    path: '/todo/add',
+    name: 'todoAdd',
+    component: todoAddPageVue
   },
   {
-    path: '/edit/:id',
-    name: 'ToDoEditPage',
-    component: ToDoEditPage
+    path: '/todo/edit/:id',
+    name: 'todoEdit',
+    component: todoEditPageVue
   },
-
   {
     path: '/todo/:id',
-    name: 'ToDoDetails',
-    component: ToDoDetails
+    name: 'TodoDetail',
+    component: TodoDetailPage
   }
 ]
 

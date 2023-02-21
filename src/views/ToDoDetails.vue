@@ -8,7 +8,7 @@
           </p>
       </ion-content>
     </ion-page>
-  </template>
+</template>
   
   <script>
   import { IonContent, IonPage, IonImg } from '@ionic/vue';

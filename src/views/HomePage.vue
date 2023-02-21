@@ -1,73 +1,85 @@
 <template>
   <ion-page>
-    <header-component page-title="Liste des villes"></header-component>
-    <template v-slot:button-right>
-      <ion-buttons slot="end">
-        <ion-button router-link="/todo/add" fill="outline" shape="circle">
-          <!-- <ion-icon :icon="add"></ion-icon> -->
-
-        </ion-button>
-        
-      </ion-buttons>
-    </template>
+    <header-component page-title="Liste des todos">
+      <template v-slot:button-right>
+        <ion-buttons slot="end">
+          <ion-button router-link="/todo/add" fill="outline" shape="circle">
+            <ion-icon :icon="add"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </template>
+    </header-component>
     <ion-content :fullscreen="true">
       <ion-list>
         <ion-item v-for="todo in todos" v-bind:key="todo.id">
-          <ion-thumbnail slot="start">
-            <ion-img :src="todo.img" alt="Image de la ville"></ion-img>
+          <ion-thumbnail>
+            <img :src="todo.img" />
           </ion-thumbnail>
           <ion-label>
-            <h1>{{todo.title}}</h1>
+            <h2>{{ todo.title }}</h2>
             <p>{{ todo.description }}</p>
           </ion-label>
-          <ion-button :router-link="'/todo/${todo.id}'">Acheter un billet</ion-button>
-          </ion-item>
+          <ion-button :router-link="`/todo/${todo.id}`"
+            >Voir le détail</ion-button
+          >
+        </ion-item>
       </ion-list>
     </ion-content>
   </ion-page>
 </template>
 
 <script>
-import { IonContent, IonPage, IonList, IonItem,IonLabel,IonButton,IonButtons,IonThumbnail } from '@ionic/vue';
-import { defineComponent, computed } from 'vue';
-import { store} from "../store/index";
-import HeaderComponent from '@/components/HeaderComponent.vue';
-//import { useStore } from "../store";
+import {
+  IonContent,
+  IonPage,
+  IonButtons,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonButton,
+  IonThumbnail,
+  IonIcon,
+} from "@ionic/vue";
+import { computed, defineComponent } from "vue";
+import { useStore } from "../store";
 
-// import { IonIcon } from '@ionic/icons';
+import { add } from "ionicons/icons";
 
 export default defineComponent({
-
-  name:"HomePage",
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  setup(props){
-   // const store = useStore();
-    //methode 1
-    //const todos = store
-    // recuperation des getters
-    const todos = computed(()=>{
-      return store.getters.getAlltodos;
-    })
-    return {todos}
-
-
+  name: "HomePage",
+  setup() {
+    const store = useStore();
+    //const todos= store.state.todos,
+    const todos = computed(() => {
+      return store.getters.getAllTodos;
+    });
+    return { todos, add };
   },
-  data(){
-    return{}},
-
-  components: {IonContent, IonPage, IonItem, IonLabel, IonList,IonButton,IonButtons,IonThumbnail,HeaderComponent },
+  components: {
+    IonButtons,
+    IonContent,
+    IonPage,
+    IonItem,
+    IonLabel,
+    IonIcon,
+    IonList,
+    IonButton,
+    IonThumbnail,
+  },
 });
 </script>
 
-ion-button[shape="circle"]{
-  --border-radius: 50%;
-  width:35px;
-  height:35px:
-}
 <style scoped>
+
+ion-button[shape="circle"]{
+  --border-raduis: 50%
+  width: 35px;
+  height: 50px;
+}
+
 #container {
   text-align: center;
-  
+
   position: absolute;
   left: 0;
   right: 0;
@@ -83,9 +95,9 @@ ion-button[shape="circle"]{
 #container p {
   font-size: 16px;
   line-height: 22px;
-  
+
   color: #8c8c8c;
-  
+
   margin: 0;
 }
 
