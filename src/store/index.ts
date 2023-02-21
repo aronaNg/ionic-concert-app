@@ -56,8 +56,18 @@ const actions:ActionTree<State,State> ={
         })
     },
     deleteTodo(context, todo_id) {
-        console.log("action delete" , todo_id)
-        context.commit("deleteTodo", todo_id);
+        return axios.delete(API_URL + "/todos/"+todo_id,).then((response) => {
+            
+            if (response.status == 200) {
+                context.commit("deleteTodo", todo_id);
+            }
+
+            return {"statut":response.status, "message":response.statusText}
+
+        }).catch((error) => {
+            console.log(error);
+            return {"statut":error.status,"message":error}
+        })
     },
     async getTodos(state) {
         const todos = await axios.get(API_URL+"/todos");

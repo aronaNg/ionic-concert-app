@@ -31,7 +31,7 @@ export default defineComponent({
       //console.log(todoEmit);
       store.dispatch("editTodo", todoEmit).then((response) => {
         if (response.statut == 200) {
-          afficherToast("Todo édité avec succès", "success");
+          afficherToast("Todo éditée avec succès", "success");
         } else {
           afficherToast("Erreur lors de l'edit d'un Todo", "danger");
         }

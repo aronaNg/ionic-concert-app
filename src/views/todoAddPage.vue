@@ -32,7 +32,7 @@ export default defineComponent({
       //console.log(todoEmit);
       store.dispatch("addTodo", todoEmit).then((response) => {
         if (response.statut == 200) {
-          afficherToast("Todo ajouté avec succès", "success");
+          afficherToast("Todo ajoutée avec succès", "success");
         } else {
           afficherToast("Erreur lors de l'ajout d'un Todo", "danger");
         }

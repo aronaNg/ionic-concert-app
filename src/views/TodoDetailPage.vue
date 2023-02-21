@@ -40,6 +40,7 @@ import {
 import { computed, defineComponent } from "vue";
 import { useStore } from "@/store";
 import { useRoute, useRouter } from "vue-router";
+import { afficherToast } from "../components/utils/toast.js";
 
 export default defineComponent({
   name: "TodoDetailPage",
@@ -61,8 +62,17 @@ export default defineComponent({
             text: "Oui, je confirme",
             role: "Confirm",
             handler: () => {
-              store.dispatch("deleteTodo", id);
-              router.push("/");
+              store.dispatch("deleteTodo", id).then((response) => {
+                if (response.statut == 200) {
+                  afficherToast("Todo supprimé avec succès", "success");
+                } else {
+                  afficherToast(
+                    "Erreur lors de la suppresion d'un Todo",
+                    "danger"
+                  );
+                }
+                router.push("/");
+              });
             },
           },
         ],
