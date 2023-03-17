@@ -7,7 +7,7 @@ exports.create = (req, res) => {
     if (!req.body.nom) {
       res.status(400).send({
         message: "Content can not be empty!"
-      });
+      })  ;
       return;
     }
     // Save Concert in the database
