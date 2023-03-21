@@ -2,7 +2,7 @@ import {createStore, GetterTree, Store, useStore as baseUseStore,ActionTree, Mut
 import { InjectionKey } from "vue";
 export type Concert = {id:number, libelle:string, description:string,categorie_id?:number, user_id?:number,image?:string,date?:Date,heure?:string,createdAt?:string, updatedAt?:string}
 //export type ;
-export type State = { concerts: Concert[]/*,categories:Category[]*/ }
+export type State = { concerts: Concert[]/*,concerts:Category[]*/ }
 import axios from "axios";
 
 
@@ -55,7 +55,7 @@ const actions:ActionTree<State,State> ={
         })
     },
     deleteTodo(context, todo_id) {
-        return axios.delete(API_URL + "/categories/"+todo_id,).then((response) => {
+        return axios.delete(API_URL + "/concerts/"+todo_id,).then((response) => {
             
             if (response.status == 200) {
                 context.commit("deleteTodo", todo_id);
@@ -69,9 +69,9 @@ const actions:ActionTree<State,State> ={
         })
     },
     async getTodos(state) {
-        const categories = await axios.get(API_URL+"/categories");
+        const concerts = await axios.get(API_URL+"/concerts");
 
-        state.commit("GET_TODO",categories.data)
+        state.commit("GET_TODO",concerts.data)
     }
 }
 
