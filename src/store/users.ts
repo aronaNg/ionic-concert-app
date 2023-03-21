@@ -1,8 +1,7 @@
 import {createStore, GetterTree, Store, useStore as baseUseStore,ActionTree, MutationTree} from "vuex"
 import { InjectionKey } from "vue";
 export type User = {id:number, login:string, password:string,role:string,createdAt?:string, updatedAt?:string}
-//export type ;
-export type State = { users: User[]/*,categories:Category[]*/ }
+export type State = { users: User[] }
 import axios from "axios";
 
 
@@ -42,7 +41,7 @@ const actions:ActionTree<State,State> ={
 
     },
     editTodo(context, editTodo) {
-        return axios.put(API_URL + "/categories/"+editTodo.id, editTodo).then((response) => {
+        return axios.put(API_URL + "/user/"+editTodo.id, editTodo).then((response) => {
             
             if (response.status == 200) {
                 context.commit("editTodo", editTodo);

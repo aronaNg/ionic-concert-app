@@ -31,9 +31,9 @@ export default defineComponent({
       //console.log(todoEmit);
       store.dispatch("editTodo", todoEmit).then((response) => {
         if (response.statut == 200) {
-          afficherToast("Todo éditée avec succès", "success");
+          afficherToast("Catégorie éditée avec succès", "success");
         } else {
-          afficherToast("Erreur lors de l'edit d'un Todo", "danger");
+          afficherToast("Erreur lors de l'edit d'une Catégorie", "danger");
         }
         router.push("/category");
       });

@@ -26,6 +26,7 @@
           >
         </ion-item>
       </ion-list>
+      <ion-button router-link="/admin" fill="outline" shape="circle">Retour au menu admin</ion-button>
     </ion-content>
   </ion-page>
 </template>

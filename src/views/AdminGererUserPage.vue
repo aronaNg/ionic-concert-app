@@ -1,18 +1,3 @@
-<!-- <template>
-  <ion-page>
-      <header-component page-title="Page utilisateur">
-    </header-component>
-
-    <ion-content class="ion-padding">
-      <ion-list>
-        <ion-item v-for="user in users" :key="user.id">
-          <ion-label>{{ user.login }}</ion-label>
-          <ion-label>{{ user.id }}</ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-page>
-</template> -->
 <template>
   <ion-page>
     <header-component page-title="Liste des utilisateurs">
@@ -24,15 +9,15 @@
         </ion-buttons>
       </template>
     </header-component>
-    <ion-content :fullscreen="true">
+    <ion-content class="ion-padding">
       <ion-list>
         <ion-item v-for="user in users" v-bind:key="user.id">
          
           <ion-label>{{ user.login }}</ion-label>
           <ion-label>{{ user.id }}</ion-label>
-          <ion-button :router-link="`/category/${todo.id}`"
-            >Opérations</ion-button
-          >
+          <!-- <ion-button color="danger" @click="deleteTodo(todo.id)">
+        Supprimer
+      </ion-button> -->
         </ion-item>
       </ion-list>
     </ion-content>
