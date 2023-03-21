@@ -16,10 +16,16 @@
     </header-component>
     <ion-content :fullscreen="true">
       <ion-list>
-        <ion-item v-for="concert in concerts" v-bind:key="concert.id">
+        <ion-item v-for="todo in concerts" v-bind:key="todo.id">
          
           <ion-label>
-            <h2>{{ concert.libelle }}</h2>
+            <h2>Titre : {{ todo.nom }}</h2>
+            <h2>Description : {{ todo.description }}</h2>
+            <ion-datetime-button datetime="datetime"></ion-datetime-button>
+  
+            <ion-modal :keep-contents-mounted="true">
+              <ion-datetime id="datetime"></ion-datetime>{{ todo.date }}
+            </ion-modal>
           </ion-label>
           <ion-button :router-link="`/user/concerts/${todo.id}`"
             >Opérations</ion-button
@@ -41,9 +47,12 @@ import {
   IonLabel,
   IonButton,
   IonIcon,
+  IonDatetime, 
+  IonDatetimeButton,
+   IonModal
 } from "@ionic/vue";
 import { computed, defineComponent } from "vue";
-import { useStore } from "../store/concerts";
+import { useStore } from "../store";
 import { useRoute, useRouter } from "vue-router";
 
 import { add } from "ionicons/icons";
@@ -79,6 +88,9 @@ export default defineComponent({
     IonIcon,
     IonList,
     IonButton,
+    IonDatetime, 
+    IonDatetimeButton,
+     IonModal
   },
 });
 </script>

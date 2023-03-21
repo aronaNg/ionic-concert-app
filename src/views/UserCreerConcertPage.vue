@@ -1,34 +1,59 @@
 <template>
   <ion-page>
-    <header-component page-title="Ajout d'un concert">
-      <template v-slot:button-right>
-    
-        
-      </template>
-    </header-component>
+    <header-component page-title="Ajouter un concert"></header-component>
+
     <ion-content :fullscreen="true">
-        
-      <ion-button router-link="/user" fill="outline" shape="circle">Retour au menu user</ion-button>
+      <concertForm :todo_props="todo" @submit-form="saveTodo"></concertForm>
     </ion-content>
   </ion-page>
 </template>
+
 <script>
-  import { IonPage, IonContent,IonButton } from '@ionic/vue';
-  import { defineComponent } from 'vue';
+import HeaderComponent from "@/components/HeaderComponent.vue";
+import { IonContent, IonPage } from "@ionic/vue";
+import { useStore } from "../store";
+//import { useStore } from "../store/concerts";
 
-  export default defineComponent({
-    name: 'UserCreerConcertPage',
-    components: { IonPage, IonContent,IonButton },
-    methods: {
-      // Fonction pour naviguer vers la page "Voir tous les concerts"
-      createConcert() {
-        this.$router.push('/user/creerconcert');
-      },
+import concertForm from "@/components/concertForm.vue";
+import { useRouter } from "vue-router";
+import { defineComponent } from "vue";
+import { afficherToast } from "../components/utils/toast.js";
+export default defineComponent({
+  name: "UserCreerConcertPage",
+  setup() {
+    const router = useRouter();
+    const store = useStore();
 
-      // Fonction pour naviguer vers la page "Gérer les catégories"
-      gererConcerts() {
-        this.$router.push('/user/concerts');
-      }
+    const todo = {
+      nom: "",
+      description: "",
+      image: "",
+      date: "",
+      heure: "",
+      categorie_id: "",
+      user_id: "",
+      
+    };
+
+    function saveTodo(todoEmit) {
+      //console.log(todoEmit);
+      store.dispatch("addTodo", todoEmit).then((response) => {
+        if (response.statut == 200) {
+          afficherToast("Concert ajouté avec succès", "success");
+        } else {
+          afficherToast("Erreur lors de l'ajout d'un concert", "danger");
+        }
+        router.push("/user/concerts/");
+      });
     }
-  });
+
+    return { saveTodo, todo };
+  },
+  components: { IonContent, IonPage, HeaderComponent, concertForm },
+  // methods: {
+  //     submitForm(){
+  //         console.log(this.todo);
+  //     }
+  // },
+});
 </script>

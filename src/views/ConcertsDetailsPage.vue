@@ -2,15 +2,15 @@
     <ion-page>
       <header-component
         :page-title="todo.title"
-        page-default-back-link="Home"
+        page-default-back-link="UserPage"
         v-if="todo"
       ></header-component>
   
       <ion-content id="container" v-if="todo">
      
-        <h2>Nom de la catégorie : {{ todo.libelle }}</h2>
+        <h2>Nom de concert : {{ todo.nom }}</h2>
   
-        <ion-button color="warning" :router-link="`/admin/category/edit/${todo.id}`">
+        <ion-button color="warning" :router-link="`/user/concerts/edit/${todo.id}`">
           Modifier
         </ion-button>
   
@@ -58,14 +58,14 @@
               handler: () => {
                 store.dispatch("deleteTodo", id).then((response) => {
                   if (response.statut == 200) {
-                    afficherToast("Catégorie supprimée avec succès", "success");
+                    afficherToast("Concert supprimé avec succès", "success");
                   } else {
                     afficherToast(
-                      "Erreur lors de la suppresion d'un Catégorie",
+                      "Erreur lors de la suppresion d'un concert",
                       "danger"
                     );
                   }
-                  router.push("/admin/category");
+                  router.push("/user/concerts");
                 });
               },
             },
