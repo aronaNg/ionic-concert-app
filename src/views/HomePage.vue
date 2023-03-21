@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <header-component page-title="Liste des todos">
+    <header-component page-title="Liste des catégories">
       <template v-slot:button-right>
         <ion-buttons slot="end">
           <ion-button router-link="/todo/add" fill="outline" shape="circle">
@@ -11,13 +11,10 @@
     </header-component>
     <ion-content :fullscreen="true">
       <ion-list>
-        <ion-item v-for="todo in todos" v-bind:key="todo.id">
-          <ion-thumbnail>
-            <img :src="todo.img" />
-          </ion-thumbnail>
+        <ion-item v-for="todo in categories" v-bind:key="todo.id">
+         
           <ion-label>
-            <h2>{{ todo.title }}</h2>
-            <p>{{ todo.description }}</p>
+            <h2>{{ todo.libelle }}</h2>
           </ion-label>
           <ion-button :router-link="`/todo/${todo.id}`"
             >Voir le détail</ion-button
@@ -37,7 +34,6 @@ import {
   IonItem,
   IonLabel,
   IonButton,
-  IonThumbnail,
   IonIcon,
 } from "@ionic/vue";
 import { computed, defineComponent } from "vue";
@@ -68,7 +64,6 @@ export default defineComponent({
     IonIcon,
     IonList,
     IonButton,
-    IonThumbnail,
   },
 });
 </script>

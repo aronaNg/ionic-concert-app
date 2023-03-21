@@ -7,11 +7,7 @@
     ></header-component>
 
     <ion-content id="container" v-if="todo">
-      <ion-img
-        :src="todo.img"
-        alt="The Wisconsin State Capitol building in Madison, WI at night"
-      ></ion-img>
-
+   
       <h1>{{ todo.title }}</h1>
       <p>{{ todo.description }}</p>
 
@@ -33,7 +29,6 @@
 import {
   IonContent,
   IonPage,
-  IonImg,
   IonButton,
   alertController,
 } from "@ionic/vue";
@@ -90,7 +85,7 @@ export default defineComponent({
   // data : ()=>{
   //   test:"test"
   // },
-  components: { IonContent, IonPage, IonImg, IonButton },
+  components: { IonContent, IonPage, IonButton },
 });
 </script>
 

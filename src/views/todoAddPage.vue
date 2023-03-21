@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <header-component page-title="Ajouter un todo"></header-component>
+    <header-component page-title="Ajouter une catégorie"></header-component>
 
     <ion-content :fullscreen="true">
       <todoForm :todo_props="todo" @submit-form="saveTodo"></todoForm>

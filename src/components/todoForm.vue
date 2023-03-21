@@ -2,22 +2,12 @@
   <form @submit.prevent="submitForm1">
     <ion-list>
       <ion-item>
-        <ion-label> Titre du Todo </ion-label>
+        <ion-label> Nom de la catégorie </ion-label>
         <ion-input
           type="text"
-          placeholder="Titre du Todo"
-          v-model="todo.title"
+          placeholder="Nom de la catégorie"
+          v-model="todo.libelle"
         ></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label> Description du Todo </ion-label>
-        <ion-textarea col="5" v-model="todo.description"></ion-textarea>
-      </ion-item>
-
-      <ion-item>
-        <ion-label> Image URL de ton Todo </ion-label>
-        <ion-input type="url" v-model="todo.img"></ion-input>
       </ion-item>
     </ion-list>
     <ion-button expand="full" type="submit">Sauvegarder</ion-button>
@@ -30,7 +20,6 @@ import {
   IonItem,
   IonLabel,
   IonInput,
-  IonTextarea,
   IonButton,
 } from "@ionic/vue";
 import { toRef } from "vue";
@@ -52,7 +41,6 @@ export default {
     IonItem,
     IonLabel,
     IonInput,
-    IonTextarea,
     IonButton,
   },
 };

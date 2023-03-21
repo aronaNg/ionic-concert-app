@@ -1,14 +1,14 @@
 import {createStore, GetterTree, Store, useStore as baseUseStore,ActionTree, MutationTree} from "vuex"
 import { InjectionKey } from "vue";
-export type Todo = {id:number, title:string, description?:string, img?:string, createdAt?:string, updatedAt?:string}
+export type Category = {id:number, libelle:string, user_id?:number,createdAt?:string, updatedAt?:string}
 //export type ;
-export type State = { todos: Todo[]/*,categories:Category[]*/ }
+export type State = { categories: Category[]/*,categories:Category[]*/ }
 import axios from "axios";
 
 
 
 const state: State = {
-    todos:[
+    categories:[
        
     ]
 }
@@ -18,16 +18,16 @@ const API_URL = "http://localhost:8082/api"
 
 const getters: GetterTree<State,State> = {
     getAllTodos: (state) => {
-        return state.todos
+        return state.categories
     },
-    getTodoById : (state) => (id:number) => state.todos.find(todo => todo.id === id)
+    getTodoById : (state) => (id:number) => state.categories.find(todo => todo.id === id)
 }
 
 const actions:ActionTree<State,State> ={
     addTodo(context, newTodo) {
         
 
-        return axios.post(API_URL + "/todos", newTodo).then((response) => {
+        return axios.post(API_URL + "/categories", newTodo).then((response) => {
             
             if (response.status == 200) {
                 context.commit("addTodo", newTodo);
@@ -42,7 +42,7 @@ const actions:ActionTree<State,State> ={
 
     },
     editTodo(context, editTodo) {
-        return axios.put(API_URL + "/todos/"+editTodo.id, editTodo).then((response) => {
+        return axios.put(API_URL + "/categories/"+editTodo.id, editTodo).then((response) => {
             
             if (response.status == 200) {
                 context.commit("editTodo", editTodo);
@@ -56,7 +56,7 @@ const actions:ActionTree<State,State> ={
         })
     },
     deleteTodo(context, todo_id) {
-        return axios.delete(API_URL + "/todos/"+todo_id,).then((response) => {
+        return axios.delete(API_URL + "/categories/"+todo_id,).then((response) => {
             
             if (response.status == 200) {
                 context.commit("deleteTodo", todo_id);
@@ -70,38 +70,36 @@ const actions:ActionTree<State,State> ={
         })
     },
     async getTodos(state) {
-        const todos = await axios.get(API_URL+"/todos");
+        const categories = await axios.get(API_URL+"/categories");
 
-        state.commit("GET_TODO",todos.data)
+        state.commit("GET_TODO",categories.data)
     }
 }
 
 const mutations: MutationTree<State> = {
     GET_TODO(state, todos) {
-        state.todos = todos;
+        state.categories = todos;
     },
     addTodo(state,newTodo){
         const todoFormated = {
-            title:newTodo.title,
-            description:newTodo.description,
-            img:newTodo.img,
-            id:state.todos.length
+            libelle:newTodo.libelle,
+            id:state.categories.length
         }
 
-        state.todos.push(todoFormated);
+        state.categories.push(todoFormated);
     },
 
     editTodo(state, editTodo) {
-        const index = state.todos.findIndex(todo => todo.id === editTodo.id)
+        const index = state.categories.findIndex(todo => todo.id === editTodo.id)
 
-        state.todos[index] = editTodo
+        state.categories[index] = editTodo
 
     },
 
     deleteTodo(state, todo_id) {
-        const index = state.todos.findIndex(todo => todo.id === todo_id)
+        const index = state.categories.findIndex(todo => todo.id === todo_id)
         console.log("delete index : ", index)
-        state.todos.splice(index,1)
+        state.categories.splice(index,1)
 
     }
     
