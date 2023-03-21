@@ -29,7 +29,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/todo/:id',
     name: 'TodoDetail',
     component: TodoDetailPage
-  }
+  },
+  {
+    path: '/login',
+    component: () => import('@/views/LoginPage.vue'),
+  },
 ]
 
 const router = createRouter({

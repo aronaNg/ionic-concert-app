@@ -28,17 +28,9 @@ exports.login = async(req, res) => {
         }else{
           return res.status(404).json({ error : "User does not exist" });
         }
-
-
-      
-
-       
-
-         
   
           }
 };
-
 exports.getUser = async(req, res) => {
   
 
@@ -54,25 +46,11 @@ exports.getUser = async(req, res) => {
             err.message || "Some error occurred while retrieving Users."
         });
       });
-
-    
-
-
-    
-
-     
-
-       
-
-
 };
 
 
 
 exports.createlogin = async(req, res) => {
-  
-
-
     const salt = await bcrypt.genSalt(10);
     var usr = {
       login : req.body.login,
