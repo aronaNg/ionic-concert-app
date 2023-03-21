@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-      <header-component page-title="Page d'administration">
+      <header-component page-title="Page utilisateur">
     </header-component>
 
     <ion-content>
