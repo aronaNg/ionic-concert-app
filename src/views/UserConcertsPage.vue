@@ -1,4 +1,5 @@
 <template>
+  
   <ion-page>
     <header-component page-title="Liste des concerts">
       <template v-slot:button-right>
@@ -11,7 +12,7 @@
           <ion-button @click="logout()">
             Logout
           </ion-button>
-        </ion-buttons> -->
+        </ion-buttons> Todo c'est concert-->
       </template>
     </header-component>
     <ion-content :fullscreen="true">
@@ -27,6 +28,9 @@
               <ion-datetime id="datetime"></ion-datetime>{{ todo.date }}
             </ion-modal>
           </ion-label>
+          <ion-button @click="addToFavorites(todo)">
+          <ion-icon :icon="heart"></ion-icon>
+        </ion-button>
           <ion-button :router-link="`/user/concerts/${todo.id}`"
             >Opérations</ion-button
           >
@@ -49,14 +53,14 @@ import {
   IonIcon,
   IonDatetime, 
   IonDatetimeButton,
-   IonModal
+  IonModal
 } from "@ionic/vue";
 import { computed, defineComponent } from "vue";
 import { useStore } from "../store";
 import { useRoute, useRouter } from "vue-router";
-
+import { heart } from 'ionicons/icons';
 import { add } from "ionicons/icons";
-
+import { ref } from 'vue';
 export default defineComponent({
   name: "UserConcertsPage",
   setup() {
@@ -71,12 +75,22 @@ export default defineComponent({
       return store.getters.getAllTodos;
     });
 
+    // const heart = addCircle;
+    // const heartOutline = addCircleOutline;
+
+    const favorites = ref([]);
+
+    // Define a method for adding a concert to favorites
+    const addToFavorites = (todo) => {
+      favorites.value.push(todo);
+    };
+
     // const logout = () => {
     //   store.dispatch("logout");
     //   router.push("/login");
     // };
 
-    return { concerts, add};
+    return { concerts, add, heart, favorites, addToFavorites };
     // return { concerts, add,logout};
   },
   components: {
