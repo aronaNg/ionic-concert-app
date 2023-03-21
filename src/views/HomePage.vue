@@ -49,11 +49,11 @@ export default defineComponent({
 
     store.dispatch("getTodos");
 
-    const todos = computed(() => {
+    const categories = computed(() => {
       return store.getters.getAllTodos;
     });
 
-    return { todos, add };
+    return { categories, add };
   },
   components: {
     IonButtons,

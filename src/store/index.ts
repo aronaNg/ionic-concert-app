@@ -77,8 +77,8 @@ const actions:ActionTree<State,State> ={
 }
 
 const mutations: MutationTree<State> = {
-    GET_TODO(state, todos) {
-        state.categories = todos;
+    GET_TODO(state, categories) {
+        state.categories = categories;
     },
     addTodo(state,newTodo){
         const todoFormated = {
