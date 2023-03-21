@@ -23,18 +23,16 @@ export default defineComponent({
     const store = useStore();
 
     const todo = {
-      title: "",
-      description: "",
-      img: "",
+      libelle: "",
     };
 
     function saveTodo(todoEmit) {
       //console.log(todoEmit);
       store.dispatch("addTodo", todoEmit).then((response) => {
         if (response.statut == 200) {
-          afficherToast("Todo ajoutée avec succès", "success");
+          afficherToast("Catégorie ajoutée avec succès", "success");
         } else {
-          afficherToast("Erreur lors de l'ajout d'un Todo", "danger");
+          afficherToast("Erreur lors de l'ajout d'une Catégorie", "danger");
         }
         router.push("/category");
       });

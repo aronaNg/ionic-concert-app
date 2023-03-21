@@ -58,10 +58,10 @@ export default defineComponent({
             handler: () => {
               store.dispatch("deleteTodo", id).then((response) => {
                 if (response.statut == 200) {
-                  afficherToast("Todo supprimé avec succès", "success");
+                  afficherToast("Catégorie supprimée avec succès", "success");
                 } else {
                   afficherToast(
-                    "Erreur lors de la suppresion d'un Todo",
+                    "Erreur lors de la suppresion d'un Catégorie",
                     "danger"
                   );
                 }

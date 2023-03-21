@@ -3,34 +3,30 @@
       <header-component page-title="Page utilisateur">
     </header-component>
 
-    <ion-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="12" size-sm="6" size-md="4">
-            <ion-button expand="block" @click="CréerConcert">
-              Créer un concert
-            </ion-button>
-          </ion-col>
-   
-          <ion-col size="12" size-sm="6" size-md="4">
-            <ion-button expand="block" @click="goToConcerts">
-              Voir tous les concerts
-            </ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+    <ion-content class="ion-padding">
+      <ion-list>
+        <ion-item v-for="user in users" :key="user.id">
+          <ion-label>{{ user.login }}</ion-label>
+          <ion-label>{{ user.id }}</ion-label>
+        </ion-item>
+      </ion-list>
     </ion-content>
   </ion-page>
 </template>
 
 <script>
-  import { IonPage, IonContent, IonGrid, IonRow, IonCol, IonButton } from '@ionic/vue';
+import UserService from '../store';
+import { IonPage, IonContent } from '@ionic/vue';
   import { defineComponent } from 'vue';
-
-  export default defineComponent({
-    name: 'AdminPage',
-    components: { IonPage, IonContent, IonGrid, IonRow, IonCol, IonButton },
-    methods: {
+export default defineComponent({
+  name: 'UserPage',
+  components: { IonPage, IonContent },
+  data() {
+    return {
+      users: [],
+    };
+  },
+  methods: {
       // Fonction pour naviguer vers la page "Voir tous les concerts"
       goToConcerts() {
         this.$router.push('/user/concerts');
@@ -41,8 +37,13 @@
       CréerConcert() {
         this.$router.push('/user/creerconcert');
       }
-    }
-  });
+    },
+  mounted() {
+    UserService.getAllUsers().then((response) => {
+      this.users = response.data;
+    });
+  },
+});
 </script>
 
 <style scoped>

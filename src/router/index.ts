@@ -11,6 +11,7 @@ import AdminGererUserPageVue from '@/views/AdminGererUserPage.vue';
 
 import UserCreerConcertPageVue from '@/views/UserCreerConcertPage.vue';
 import UserConcertsPageVue from '@/views/UserConcertsPage.vue';
+import AddUserPageVue from '@/views/AddUserPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -31,6 +32,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/user/Concerts',
     name: 'UserConcertsPage',
     component: UserConcertsPageVue
+  },
+  {
+    path: '/admin/adduser',
+    name: 'AddUserPageVue',
+    component: AddUserPageVue
   },
   {
     path: '/admin',
