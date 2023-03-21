@@ -37,7 +37,9 @@ import {
 
 } from "@ionic/vue";
 import { computed, defineComponent } from "vue";
-import { useStore } from '../store/users';
+import { useStore } from '../store';
+//import { useStore } from '../store/users';
+
 import { useRoute, useRouter } from "vue-router";
 import { afficherToast } from "../components/utils/toast.js";
 
