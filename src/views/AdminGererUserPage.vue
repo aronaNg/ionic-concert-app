@@ -13,11 +13,10 @@
       <ion-list>
         <ion-item v-for="user in users" v-bind:key="user.id">
          
-          <ion-label>{{ user.login }}</ion-label>
-          <ion-label>{{ user.id }}</ion-label>
-          <!-- <ion-button color="danger" @click="deleteTodo(todo.id)">
+          <ion-label>{{ user.libelle}}</ion-label>
+          <ion-button color="danger" @click="deleteTodo(todo.id)">
         Supprimer
-      </ion-button> -->
+      </ion-button>
         </ion-item>
       </ion-list>
     </ion-content>
@@ -34,20 +33,59 @@ import {
   IonLabel,
   IonButton,
   IonIcon,
+  alertController,
+
 } from "@ionic/vue";
 import { computed, defineComponent } from "vue";
 import { useStore } from "../store";
 import { useRoute, useRouter } from "vue-router";
+import { afficherToast } from "../components/utils/toast.js";
 
 import { add } from "ionicons/icons";
 
 export default defineComponent({
   name: "AdminGererUserPage",
   setup() {
-    const router = useRouter();
 
     const store = useStore();
     //const todos= store.state.todos,
+    const router = useRouter();
+    const route = useRoute();
+    const todoId = parseInt(route.params.id);
+
+    const deleteTodo = async (id) => {
+      const alert = await alertController.create({
+        header: "Êtes-vous sûr de supprimer?",
+        buttons: [
+          {
+            text: "Annuler",
+            role: "cancel",
+          },
+          {
+            text: "Oui, je confirme",
+            role: "Confirm",
+            handler: () => {
+              store.dispatch("deleteTodo", id).then((response) => {
+                if (response.statut == 200) {
+                  afficherToast("Catégorie supprimée avec succès", "success");
+                } else {
+                  afficherToast(
+                    "Erreur lors de la suppresion d'un Catégorie",
+                    "danger"
+                  );
+                }
+                router.push("/admin/gereruser");
+              });
+            },
+          },
+        ],
+      });
+      await alert.present();
+    };
+     const todo = computed(() => {
+      return store.getters.getTodoById(todoId);
+    });
+
 
     store.dispatch("getTodos");
 
@@ -55,12 +93,7 @@ export default defineComponent({
       return store.getters.getAllTodos;
     });
 
-    const logout = () => {
-      store.dispatch("logout");
-      router.push("/login");
-    };
-
-    return { users, add, logout};
+    return { users, add, todo,deleteTodo};
   },
   components: {
     IonButtons,

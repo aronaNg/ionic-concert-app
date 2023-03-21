@@ -54,22 +54,22 @@ const routes: Array<RouteRecordRaw> = [
     component: AdminGererUserPageVue
   },
   {
-    path: '/category',
+    path: '/admin/category',
     name: 'Home',
     component: HomePage
   },
   {
-    path: '/category/add',
+    path: '/admin/category/add',
     name: 'todoAdd',
     component: todoAddPageVue
   },
   {
-    path: '/category/edit/:id',
+    path: '/admin/category/edit/:id',
     name: 'todoEdit',
     component: todoEditPageVue
   },
   {
-    path: '/category/:id',
+    path: '/admin/category/:id',
     name: 'TodoDetail',
     component: TodoDetailPage
   },

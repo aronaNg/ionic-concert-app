@@ -34,7 +34,7 @@ export default defineComponent({
         } else {
           afficherToast("Erreur lors de l'ajout d'une Catégorie", "danger");
         }
-        router.push("/category");
+        router.push("/admin/category");
       });
     }
 

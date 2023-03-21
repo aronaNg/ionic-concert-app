@@ -10,7 +10,7 @@
    
       <h2>Nom de la catégorie : {{ todo.libelle }}</h2>
 
-      <ion-button color="warning" :router-link="`/category/edit/${todo.id}`">
+      <ion-button color="warning" :router-link="`/admin/category/edit/${todo.id}`">
         Modifier
       </ion-button>
 
@@ -65,7 +65,7 @@ export default defineComponent({
                     "danger"
                   );
                 }
-                router.push("/category");
+                router.push("/admin/category");
               });
             },
           },

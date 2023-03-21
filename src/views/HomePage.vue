@@ -3,7 +3,7 @@
     <header-component page-title="Liste des catégories">
       <template v-slot:button-right>
         <ion-buttons slot="end">
-          <ion-button router-link="/category/add" fill="outline" shape="circle">
+          <ion-button router-link="/admin/category/add" fill="outline" shape="circle">
             <ion-icon :icon="add"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -21,7 +21,7 @@
           <ion-label>
             <h2>{{ todo.libelle }}</h2>
           </ion-label>
-          <ion-button :router-link="`/category/${todo.id}`"
+          <ion-button :router-link="`/admin/category/${todo.id}`"
             >Opérations</ion-button
           >
         </ion-item>

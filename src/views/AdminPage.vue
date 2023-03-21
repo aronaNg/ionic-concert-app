@@ -42,7 +42,7 @@
   
         // Fonction pour naviguer vers la page "Gérer les catégories"
         goToCategories() {
-          this.$router.push('/category');
+          this.$router.push('/admin/category');
         },
   
         // Fonction pour naviguer vers la page "Gérer les utilisateurs"
