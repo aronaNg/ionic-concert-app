@@ -10,6 +10,8 @@ import AdminGererUserPage from '@/views/AdminGererUserPage.vue';
 import UserPage from '@/views/UserPage.vue';
 import UserCreerConcertPage from '@/views/UserCreerConcertPage.vue';
 import UserConcertsPage from '@/views/UserConcertsPage.vue';
+import ConcertsDetailsPage from '@/views/ConcertsDetailsPage.vue';
+
 import AddUserPage from '@/views/AddUserPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
@@ -31,6 +33,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/user/concerts',
     name: 'UserConcertsPage',
     component: UserConcertsPage
+  },
+  {
+    path: '/user/concerts/:id',
+    name: 'ConcertsDetailsPage',
+    component: ConcertsDetailsPage
   },
   {
     path: '/admin/adduser',

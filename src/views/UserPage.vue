@@ -37,7 +37,7 @@
 
       // Fonction pour naviguer vers la page "Gérer les catégories"
       gererConcerts() {
-        this.$router.push('/user/Concerts');
+        this.$router.push('/user/concerts');
       }
     }
   });
