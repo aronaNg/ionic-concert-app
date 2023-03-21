@@ -1,107 +1,83 @@
 <template>
-    <ion-page>
-      <header-component page-title="Liste des catégories">
-        <template v-slot:button-right>
-          <ion-buttons slot="end">
-            <ion-button router-link="/category/add" fill="outline" shape="circle">
-              <ion-icon :icon="add"></ion-icon>
+  <ion-page>
+      <header-component page-title="Page d'administration">
+    </header-component>
+
+    <ion-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" size-sm="6" size-md="4">
+            <ion-button expand="block" @click="CréerConcert">
+              Créer un concert
             </ion-button>
-          </ion-buttons>
-        </template>
-      </header-component>
-      <ion-content :fullscreen="true">
-        <ion-list>
-          <ion-item v-for="todo in categories" v-bind:key="todo.id">
-           
-            <ion-label>
-              <h2>{{ todo.libelle }}</h2>
-            </ion-label>
-            <ion-button :router-link="`/category/${todo.id}`"
-              >Opérations</ion-button
-            >
-          </ion-item>
-        </ion-list>
-      </ion-content>
-    </ion-page>
-  </template>
-  
-  <script>
-  import {
-    IonContent,
-    IonPage,
-    IonButtons,
-    IonList,
-    IonItem,
-    IonLabel,
-    IonButton,
-    IonIcon,
-  } from "@ionic/vue";
-  import { computed, defineComponent } from "vue";
-  import { useStore } from "../store";
-  
-  import { add } from "ionicons/icons";
-  
+          </ion-col>
+   
+          <ion-col size="12" size-sm="6" size-md="4">
+            <ion-button expand="block" @click="goToConcerts">
+              Voir tous les concerts
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+  </ion-page>
+</template>
+
+<script>
+  import { IonPage, IonContent, IonGrid, IonRow, IonCol, IonButton } from '@ionic/vue';
+  import { defineComponent } from 'vue';
+
   export default defineComponent({
-    name: "HomePage",
-    setup() {
-      const store = useStore();
-      //const todos= store.state.todos,
-  
-      store.dispatch("getTodos");
-  
-      const categories = computed(() => {
-        return store.getters.getAllTodos;
-      });
-  
-      return { categories, add };
-    },
-    components: {
-      IonButtons,
-      IonContent,
-      IonPage,
-      IonItem,
-      IonLabel,
-      IonIcon,
-      IonList,
-      IonButton,
-    },
+    name: 'AdminPage',
+    components: { IonPage, IonContent, IonGrid, IonRow, IonCol, IonButton },
+    methods: {
+      // Fonction pour naviguer vers la page "Voir tous les concerts"
+      goToConcerts() {
+        this.$router.push('/user/concerts');
+      },
+
+
+      // Fonction pour naviguer vers la page "Gérer les utilisateurs"
+      CréerConcert() {
+        this.$router.push('/user/creerconcert');
+      }
+    }
   });
-  </script>
-  
-  <style scoped>
-  
-  ion-button[shape="circle"]{
-    --border-raduis: 50%
-    width: 35px;
-    height: 50px;
-  }
-  
-  #container {
-    text-align: center;
-  
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  #container strong {
-    font-size: 20px;
-    line-height: 26px;
-  }
-  
-  #container p {
-    font-size: 16px;
-    line-height: 22px;
-  
-    color: #8c8c8c;
-  
-    margin: 0;
-  }
-  
-  #container a {
-    text-decoration: none;
-  }
-  </style>
-  
+</script>
+
+<style scoped>
+
+ion-button[shape="circle"]{
+--border-raduis: 50%
+width: 35px;
+height: 50px;
+}
+
+#container {
+text-align: center;
+
+position: absolute;
+left: 0;
+right: 0;
+top: 50%;
+transform: translateY(-50%);
+}
+
+#container strong {
+font-size: 20px;
+line-height: 26px;
+}
+
+#container p {
+font-size: 16px;
+line-height: 22px;
+
+color: #8c8c8c;
+
+margin: 0;
+}
+
+#container a {
+text-decoration: none;
+}
+</style>

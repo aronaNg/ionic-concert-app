@@ -5,6 +5,12 @@ import TodoDetailPage from "@/views/TodoDetailPage.vue"
 import todoAddPageVue from '@/views/todoAddPage.vue';
 import todoEditPageVue from '@/views/todoEditPage.vue';
 import UserPageVue from '@/views/UserPage.vue';
+import AdminPageVue from '@/views/AdminPage.vue';
+import AdminConcertPageVue from '@/views/AdminConcertPage.vue';
+import AdminGererUserPageVue from '@/views/AdminGererUserPage.vue';
+
+import UserCreerConcertPageVue from '@/views/UserCreerConcertPage.vue';
+import UserConcertsPageVue from '@/views/UserConcertsPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -15,6 +21,31 @@ const routes: Array<RouteRecordRaw> = [
     path: '/user',
     name: 'UserPageVue',
     component: UserPageVue
+  },
+  {
+    path: '/user/creerconcert',
+    name: 'UserCreerConcertPage',
+    component: UserCreerConcertPageVue
+  },
+  {
+    path: '/user/Concerts',
+    name: 'UserConcertsPage',
+    component: UserConcertsPageVue
+  },
+  {
+    path: '/admin',
+    name: 'AdminPageVue',
+    component: AdminPageVue
+  },
+  {
+    path: '/admin/gererconcerts',
+    name: 'AdminConcertPageVue',
+    component: AdminConcertPageVue
+  },
+  {
+    path: '/admin/gereruser',
+    name: 'AdminGererUserPageVue',
+    component: AdminGererUserPageVue
   },
   {
     path: '/category',
