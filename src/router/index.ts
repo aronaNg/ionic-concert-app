@@ -2,16 +2,15 @@ import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import HomePage from '../views/HomePage.vue'
 import TodoDetailPage from "@/views/TodoDetailPage.vue"
-import todoAddPageVue from '@/views/todoAddPage.vue';
-import todoEditPageVue from '@/views/todoEditPage.vue';
-import UserPageVue from '@/views/UserPage.vue';
-import AdminPageVue from '@/views/AdminPage.vue';
-import AdminConcertPageVue from '@/views/AdminConcertPage.vue';
-import AdminGererUserPageVue from '@/views/AdminGererUserPage.vue';
-
-import UserCreerConcertPageVue from '@/views/UserCreerConcertPage.vue';
-import UserConcertsPageVue from '@/views/UserConcertsPage.vue';
-import AddUserPageVue from '@/views/AddUserPage.vue';
+import todoAddPage from '@/views/todoAddPage.vue';
+import todoEditPage from '@/views/todoEditPage.vue';
+import AdminPage from '@/views/AdminPage.vue';
+import AdminConcertPage from '@/views/AdminConcertPage.vue';
+import AdminGererUserPage from '@/views/AdminGererUserPage.vue';
+import UserPage from '@/views/UserPage.vue';
+import UserCreerConcertPage from '@/views/UserCreerConcertPage.vue';
+import UserConcertsPage from '@/views/UserConcertsPage.vue';
+import AddUserPage from '@/views/AddUserPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -20,38 +19,38 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/user',
-    name: 'UserPageVue',
-    component: UserPageVue
+    name: 'UserPage',
+    component: UserPage
   },
   {
     path: '/user/creerconcert',
     name: 'UserCreerConcertPage',
-    component: UserCreerConcertPageVue
+    component: UserCreerConcertPage
   },
   {
     path: '/user/Concerts',
     name: 'UserConcertsPage',
-    component: UserConcertsPageVue
+    component: UserConcertsPage
   },
   {
     path: '/admin/adduser',
-    name: 'AddUserPageVue',
-    component: AddUserPageVue
+    name: 'AddUserPage',
+    component: AddUserPage
   },
   {
     path: '/admin',
-    name: 'AdminPageVue',
-    component: AdminPageVue
+    name: 'AdminPage',
+    component: AdminPage
   },
   {
     path: '/admin/gererconcerts',
-    name: 'AdminConcertPageVue',
-    component: AdminConcertPageVue
+    name: 'AdminConcertPage',
+    component: AdminConcertPage
   },
   {
     path: '/admin/gereruser',
-    name: 'AdminGererUserPageVue',
-    component: AdminGererUserPageVue
+    name: 'AdminGererUserPage',
+    component: AdminGererUserPage
   },
   {
     path: '/admin/category',
@@ -61,12 +60,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/admin/category/add',
     name: 'todoAdd',
-    component: todoAddPageVue
+    component: todoAddPage
   },
   {
     path: '/admin/category/edit/:id',
     name: 'todoEdit',
-    component: todoEditPageVue
+    component: todoEditPage
   },
   {
     path: '/admin/category/:id',
