@@ -28,7 +28,7 @@ const routes: Array<RouteRecordRaw> = [
     component: UserCreerConcertPage
   },
   {
-    path: '/user/Concerts',
+    path: '/user/concerts',
     name: 'UserConcertsPage',
     component: UserConcertsPage
   },

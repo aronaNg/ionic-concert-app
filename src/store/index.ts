@@ -6,7 +6,6 @@ export type State = { categories: Category[]/*,categories:Category[]*/ }
 import axios from "axios";
 
 
-
 const state: State = {
     categories:[
        
@@ -104,6 +103,8 @@ const mutations: MutationTree<State> = {
     }
     
 }
+
+
 
 export const store = createStore<State>({state,getters,actions,mutations})
 

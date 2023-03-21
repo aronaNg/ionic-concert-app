@@ -13,7 +13,7 @@
         <ion-label> Mot de passe</ion-label>
         <ion-input
           type="text"
-          placeholder="votre mot dee passe"
+          placeholder="votre mot de passe"
           v-model="todo.password"
         ></ion-input>
       </ion-item>

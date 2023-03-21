@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <header-component page-title="Liste des utilisateurs">
+    <header-component page-title="Liste des utilisateurs" >
       <template v-slot:button-right>
         <ion-buttons slot="end">
           <ion-button router-link="/admin/adduser" fill="outline" shape="circle">
@@ -37,7 +37,7 @@ import {
 
 } from "@ionic/vue";
 import { computed, defineComponent } from "vue";
-import { useStore } from "../store";
+import { useStore } from '../store/users';
 import { useRoute, useRouter } from "vue-router";
 import { afficherToast } from "../components/utils/toast.js";
 
@@ -47,8 +47,7 @@ export default defineComponent({
   name: "AdminGererUserPage",
   setup() {
 
-    const store = useStore();
-    //const todos= store.state.todos,
+    
     const router = useRouter();
     const route = useRoute();
     const todoId = parseInt(route.params.id);
@@ -86,14 +85,15 @@ export default defineComponent({
       return store.getters.getTodoById(todoId);
     });
 
-
+    const store = useStore();
+    //const todos= store.state.todos,
     store.dispatch("getTodos");
-
+    
     const users = computed(() => {
       return store.getters.getAllTodos;
     });
 
-    return { users, add, todo,deleteTodo};
+    return { users, add,deleteTodo};
   },
   components: {
     IonButtons,
