@@ -66,11 +66,9 @@ exports.createlogin = async(req, res) => {
 exports.logout = (req, res) => {
     // Validate request
     
-
     res.status(200).send({
         message: "logout successfull!"
     });
-  
           
 };
 

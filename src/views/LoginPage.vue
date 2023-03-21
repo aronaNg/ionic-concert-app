@@ -67,10 +67,10 @@
           // Stocker le token dans le local storage pour les prochaines requêtes
           localStorage.setItem("token", token);
           // Rediriger vers la page appropriée en fonction du rôle
-          if (this.username == "iutlpro" && this.password == "iutlpro") {
-            this.$router.push("/home");
-          } else if (this.username == "client" && this.password == "client") {
-            this.$router.push("/todo/add");
+          if((this.username == "iutlpro" && this.password == "iutlpro") || role === 'admin') {
+            this.$router.push("/category");
+          } else if((this.username == "client" && this.password == "client") || role === 'user') {
+            this.$router.push("/user");
           }
         } catch (error) {
           console.log(error.response.data.error);

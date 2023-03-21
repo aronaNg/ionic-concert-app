@@ -8,7 +8,7 @@
 
     <ion-content id="container" v-if="todo">
    
-      <h1>{{ todo.libelle }}</h1>
+      <h2>Nom de la catégorie : {{ todo.libelle }}</h2>
 
       <ion-button color="warning" :router-link="`/category/edit/${todo.id}`">
         Modifier

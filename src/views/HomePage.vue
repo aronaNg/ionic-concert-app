@@ -7,6 +7,11 @@
             <ion-icon :icon="add"></ion-icon>
           </ion-button>
         </ion-buttons>
+        <ion-buttons slot="start">
+          <ion-button @click="logout()">
+            Logout
+          </ion-button>
+        </ion-buttons>
       </template>
     </header-component>
     <ion-content :fullscreen="true">
@@ -17,7 +22,7 @@
             <h2>{{ todo.libelle }}</h2>
           </ion-label>
           <ion-button :router-link="`/category/${todo.id}`"
-            >Voir le détail</ion-button
+            >Opérations</ion-button
           >
         </ion-item>
       </ion-list>
@@ -38,12 +43,15 @@ import {
 } from "@ionic/vue";
 import { computed, defineComponent } from "vue";
 import { useStore } from "../store";
+import { useRoute, useRouter } from "vue-router";
 
 import { add } from "ionicons/icons";
 
 export default defineComponent({
   name: "HomePage",
   setup() {
+    const router = useRouter();
+
     const store = useStore();
     //const todos= store.state.todos,
 
@@ -53,7 +61,12 @@ export default defineComponent({
       return store.getters.getAllTodos;
     });
 
-    return { categories, add };
+    const logout = () => {
+      store.dispatch("logout");
+      router.push("/login");
+    };
+
+    return { categories, add, logout};
   },
   components: {
     IonButtons,

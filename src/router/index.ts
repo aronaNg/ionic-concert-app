@@ -4,11 +4,17 @@ import HomePage from '../views/HomePage.vue'
 import TodoDetailPage from "@/views/TodoDetailPage.vue"
 import todoAddPageVue from '@/views/todoAddPage.vue';
 import todoEditPageVue from '@/views/todoEditPage.vue';
+import UserPageVue from '@/views/UserPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     redirect: '/login'
+  },
+  {
+    path: '/user',
+    name: 'UserPageVue',
+    component: UserPageVue
   },
   {
     path: '/category',
@@ -32,6 +38,10 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/login',
+    component: () => import('@/views/LoginPage.vue'),
+  },
+  {
+    path: '/logout',
     component: () => import('@/views/LoginPage.vue'),
   },
 ]
