@@ -35,7 +35,7 @@ export default defineComponent({
         } else {
           afficherToast("Erreur lors de l'edit d'un Todo", "danger");
         }
-        router.push("/");
+        router.push("/category");
       });
     }
     return { editTodo, todo };

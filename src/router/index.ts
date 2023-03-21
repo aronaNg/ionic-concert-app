@@ -8,25 +8,25 @@ import todoEditPageVue from '@/views/todoEditPage.vue';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/login'
   },
   {
-    path: '/home',
+    path: '/category',
     name: 'Home',
     component: HomePage
   },
   {
-    path: '/todo/add',
+    path: '/category/add',
     name: 'todoAdd',
     component: todoAddPageVue
   },
   {
-    path: '/todo/edit/:id',
+    path: '/category/edit/:id',
     name: 'todoEdit',
     component: todoEditPageVue
   },
   {
-    path: '/todo/:id',
+    path: '/category/:id',
     name: 'TodoDetail',
     component: TodoDetailPage
   },

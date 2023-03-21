@@ -36,7 +36,7 @@ export default defineComponent({
         } else {
           afficherToast("Erreur lors de l'ajout d'un Todo", "danger");
         }
-        router.push("/");
+        router.push("/category");
       });
     }
 
